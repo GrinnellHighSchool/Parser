@@ -7,3 +7,7 @@ Parser
 - Delete/Move (Sergio)
 - Create (Hans)
 - Search (Calvin)
+
+Rules:
+- All lowercase
+
