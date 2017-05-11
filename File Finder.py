@@ -24,4 +24,6 @@ def Searcher(Name):
 				fileLocations.append("~"+(dirName + "/" + fname)[1:])
 	return fileLocations
 
-print(Searcher("hello"))
+#Example
+#Searcher("hello")
+#returns ['./Desktop/Random/Terminal Files/hello']
