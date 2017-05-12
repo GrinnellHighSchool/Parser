@@ -14,7 +14,7 @@ class opener():
         i = 0
         k=0
         spacekiller = list(name)
-        for kill in range(len(spacekiller)):
+        for kill in range(len(spacekiller)): #This loop goes through the list and adds the backslashes in the directory name which is manditory
             ehh = spacekiller[kill]
             if ehh == ' ':
                  i = kill
@@ -24,6 +24,6 @@ class opener():
 
 
         for lol in spacekiller:            
-            file = ''.join(spacekiller[0:len(spacekiller)])
+            file = ''.join(spacekiller[0:len(spacekiller)]) #this makes the list into the string again
 
         subprocess.run('open ' + file, shell=True)
