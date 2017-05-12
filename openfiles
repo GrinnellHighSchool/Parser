@@ -1,0 +1,29 @@
+import subprocess
+
+class opener():
+
+    def __init__(self):
+        pass
+
+    def opener_help(self):
+        print ('This program opens a given file')
+
+        
+    def directory_opener(self, file):
+        name = str(file)
+        i = 0
+        k=0
+        spacekiller = list(name)
+        for kill in range(len(spacekiller)):
+            ehh = spacekiller[kill]
+            if ehh == ' ':
+                 i = kill
+                 k += 1
+            if k == 1:
+                spacekiller.insert(i, '\\')
+
+
+        for lol in spacekiller:            
+            file = ''.join(spacekiller[0:len(spacekiller)])
+
+        subprocess.run('open ' + file, shell=True)
