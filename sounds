@@ -1,0 +1,46 @@
+#Calvin Dreesman
+#Music test
+import pygame
+import time
+
+#For testing without a search function input your file directory for sounds
+#It works for .ogg, .wav, and .mp3
+#Will test more later
+z = "/Users/dreescal/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/Watch out watch out - Randy Orton.mp3"
+#Testing for input from search function
+def dothis():
+    play(z)
+
+def play(directory):
+    pygame.init()
+    pygame.mixer.init()
+    yeslibrary = ["yes", "Yes"]
+    nolibrary = ["no", "No"]
+    playthis = directory
+    loop = input("Loop? Yes or No ")
+
+#This was used for manual input. No longer 100% necessary.
+#    playthis = input("Give directory name ")
+    pygame.mixer.music.load(playthis)
+    
+    pygame.mixer.music.set_volume(.5)
+
+    if loop in yeslibrary:
+        pygame.mixer.music.play(loops=-1)
+    else:
+        pygame.mixer.music.play(loops=0)
+
+    
+
+#Going to be playing with this so the program will pause for the length
+#of the song
+        
+#    time.sleep(10)
+
+#This is will stop the program from hanging and fix any sounds not playing
+
+#    pygame.quit()
+
+#/Users/dreescal/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/Watch out watch out - Randy Orton.mp3
+#/Users/dreescal/Documents/sounds/shoot.wav
+#/Users/dreescal/Documents/sounds/soundonly.ogg
