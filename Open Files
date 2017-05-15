@@ -1,3 +1,21 @@
+# Sergio - Open()
+
+import subprocess
+
+class Parser():
+
+    def __init__(self, file):
+        self.file = file
+        
+     def Open(self):
+        directory = ['\ ' if x == ' ' else x for x in self.file]
+        file = ''.join(directory[0:len(directory)])
+        subprocess.run('open ' + file, shell=True)
+
+
+
+# Aidan - Open()
+
 import subprocess
 
 class opener():
