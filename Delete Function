@@ -1,0 +1,21 @@
+    def Help_Delete(self):
+        print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
+    
+    def Delete(self):
+        response = input("Delete File: ")
+        check = False
+        while check == False:
+            if response == "cancel":
+                print ("")
+                print ("Canceled")
+                check = True
+            elif response == "delete":
+                shutil.move(self.file, "Trash")
+                print ("")
+                print ("File Removed")
+                check = True
+            else:
+                print ("")
+                print ("Invalid Response: ")
+                print ("Type (delete) to remove file or type (cancel) to exit")
+                response = input("Delete File: " )
