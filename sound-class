@@ -3,10 +3,13 @@
 import pygame
 import time
 
-WIDTH = 100
-HEIGHT = 100
+WIDTH = 300
+HEIGHT = 300
 FPS = 5
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+currentsong = "currentsong" + str(123)
 
 pygame.init()
 pygame.mixer.init()
@@ -18,13 +21,24 @@ clock = pygame.time.Clock()
 #Will test more later
 z = "/Users/dreescal/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/Catch 22 -Riding the Fourth wave.mp3"
 #Testing for input from search function
-class Musicplayer(object):
+
+
+class Musicplayer():
     
     def __init__(self):
         directory = "/Users/dreescal/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/Catch 22 -Riding the Fourth wave.mp3"
-        Musicplayer.play(self, directory)
+        Musicplayer.play(directory)
 
-    def play(self, directory):
+    def keywords(self):
+        keywords = [play, start, player, sound, music]
+
+    def help(self):
+        return "hello"
+
+    def musicname():
+        return "hello"
+
+    def play(directory):
 #        pygame.init()
 #        pygame.mixer.init()
         yeslibrary = ["yes", "Yes"]
@@ -42,8 +56,7 @@ class Musicplayer(object):
             pygame.mixer.music.play(loops=-1)
         else:
             pygame.mixer.music.play(loops=0)
-            
-#Doesn't Work yet
+
     def functions(self):
         keypress = pygame.key.get_pressed()
         if keypress[pygame.K_p]:
@@ -54,16 +67,24 @@ class Musicplayer(object):
             pygame.mixer.music.queue()
         if keypress[pygame.K_r]:
             pygame.mixer.music.rewind()
-        
+
+def draw_text(surf, text, size, x, y):
+    font = pygame.font.SysFont('monospace', 25)
+    text_surface = font.render(text, True, BLACK)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    surf.blit(text_surface, text_rect)
+
+Musicplayer()
 playing = True
 
-#Doesn't Work yet
 while playing:
     clock.tick(FPS)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     screen.fill(WHITE)
+    draw_text(screen, str(currentsong), 20, WIDTH/2, HEIGHT/2)
     pygame.display.flip()
 
 
@@ -82,3 +103,4 @@ pygame.quit()
 #/Users/dreescal/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/Watch out watch out - Randy Orton.mp3
 #/Users/dreescal/Documents/sounds/shoot.wav
 #/Users/dreescal/Documents/sounds/soundonly.ogg
+
