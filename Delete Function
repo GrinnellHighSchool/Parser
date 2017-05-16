@@ -1,3 +1,17 @@
+def Parser():
+    def __init__(self, command, file):
+        self.file = file:
+        self.command = command
+        
+    def Help(self):
+        return "Initilaize parser as p = Parser('command', 'file')"
+    
+    def Keywords():
+        if self.command == "Remove" or "Delete" or "Erase" or "Destroy":
+            p.Delete()
+        else:
+            return "Command not found"
+    
     def Help_Delete(self):
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
     
