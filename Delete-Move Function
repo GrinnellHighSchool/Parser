@@ -33,3 +33,16 @@ def Parser():
                 print ("Invalid Response: ")
                 print ("Type (delete) to remove file or type (cancel) to exit")
                 response = input("Delete File: " )
+                
+    def Move(self):
+        reponse = input("Location: ")   # Asks the new location for file
+        valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
+        while True:
+            for location in valid_reponses: # Checks if location is valid
+                shutil.move(self.file, location)
+                print ("")
+                return ("File Moved")
+            else:   # If invalid location, asks again
+                print ("")
+                print ("Invalid Location: ")
+                response = input("Location: " )
