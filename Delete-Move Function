@@ -9,6 +9,8 @@ def Parser():
     def Keywords():
         if self.command == "Remove" or "Delete" or "Erase" or "Destroy":
             p.Delete()
+        if self.command == "Move" or "Transport":
+            p.Move()   
         else:
             return "Command not found"
     
