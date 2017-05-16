@@ -1,0 +1,17 @@
+def parser():
+    print('\n','Enter command below:')
+    command = str(input())
+    command_lst = command.split()
+    try:
+        keyword = command_lst[0]
+    except:
+        keyword = ''
+    file_name = ''
+    for word in command_lst[1:]:
+        file_name += word + ' '
+    
+    for handler in handler_lst:
+        if keyword in hanlder.keywords:
+            eval(handler).run(command)
+            
+    parser()
