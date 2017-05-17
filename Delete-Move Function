@@ -1,50 +1,52 @@
-def Parser():
-    def __init__(self, command, file):
-        self.file = file:
-        self.command = command
-        
-    def Help(self):
-        return "Initilaize parser as p = Parser('command', 'file')"
-    
-    def Keywords():
-        if self.command == "Remove" or "Delete" or "Erase" or "Destroy":
-            p.Delete()
-        if self.command == "Move" or "Transport":
-            p.Move()   
-        else:
-            return "Command not found"
-    
+import subprocess
+import shutil
+import os
+
+class Parser():
+    def __init__(self, file):
+        self.file = file
+                   
     def Help_Delete(self):
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
     
     def Delete(self):
-        response = input("Delete File: ")   # Checks to make sure if you want to delete file
-        check = False
-        while check == False:   # Checks for reponse
-            if response == "cancel":    # Cancels delete function
-                print ("")
-                print ("Canceled")
-                check = True
-            elif response == "delete":  # Deletes file
-                shutil.move(self.file, "Trash")
-                print ("")
-                print ("File Removed")
-                check = True
-            else:   # If invalid response, asks again
-                print ("")
-                print ("Invalid Response: ")
-                print ("Type (delete) to remove file or type (cancel) to exit")
-                response = input("Delete File: " )
-                
+        if os.path.exists(self.file) == True:
+            response = input("Delete File: ")
+            check = False
+            while check == False:
+                if response == "cancel":
+                    print ("")
+                    print ("Canceled")
+                    check = True
+                elif response == "delete":
+                    shutil.move(self.file, "/Users/perez-valentin.sergio/.Trash")
+                    print ("")
+                    print ("File Removed")
+                    check = True
+                else:
+                    print ("")
+                    print ("Invalid Response: ")
+                    print ("Type (delete) to remove file or type (cancel) to exit")
+                    response = input("Delete File: " )
+        else:
+            return "File does not exsist"
+
     def Move(self):
-        reponse = input("Location: ")   # Asks the new location for file
-        valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
-        while True:
-            for location in valid_reponses: # Checks if location is valid
-                shutil.move(self.file, location)
-                print ("")
-                return ("File Moved")
-            else:   # If invalid location, asks again
+        if os.path.exists(self.file) == True:
+            response = input("Location: ")   # Asks the new location for file
+            valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
+            while True:
+                directory = ["/Users/perez-valentin.sergio/"]
+                for location in valid_reponses: # Checks if location is valid
+                    if response == location:
+                        directory.append(location)
+                        file = ''.join(directory[0:len(directory)])
+                        print (directory)
+                        shutil.move(self.file, file)
+                        print ("")
+                        return ("File Moved")                   
                 print ("")
                 print ("Invalid Location: ")
                 response = input("Location: " )
+        else:
+            return "File does not exsist"
