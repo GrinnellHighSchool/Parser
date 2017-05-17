@@ -14,7 +14,7 @@ def parser():
     file_name = file_name[:-1]
     
     for handler in handler_lst:
-        if keyword in eval(handler).keywords():
+        if keyword in eval(handler)().keywords():
             eval(handler).run(file_name)
             
     parser()
