@@ -10,8 +10,7 @@ class Parser():
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
     
     def Delete(self):
-        if os.path.exists(self.file) == True:
-            response = input("Delete File: ")
+        response = input("Delete File: ")
             check = False
             while check == False:
                 if response == "cancel":
@@ -28,12 +27,9 @@ class Parser():
                     print ("Invalid Response: ")
                     print ("Type (delete) to remove file or type (cancel) to exit")
                     response = input("Delete File: " )
-        else:
-            return "File does not exsist"
 
     def Move(self):
-        if os.path.exists(self.file) == True:
-            response = input("Location: ")   # Asks the new location for file
+        response = input("Location: ")   # Asks the new location for file
             valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
             while True:
                 directory = ["/Users/perez-valentin.sergio/"]
@@ -48,5 +44,3 @@ class Parser():
                 print ("")
                 print ("Invalid Location: ")
                 response = input("Location: " )
-        else:
-            return "File does not exsist"
