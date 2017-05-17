@@ -11,9 +11,12 @@ def parser():
     file_name = ''
     for word in command_lst[1:]:
         file_name += word + ' '
+    file_name = file_name[:-1]
     
     for handler in handler_lst:
-        if keyword in eval(hanlder).keywords:
-            eval(handler).run(command)
+        if keyword in eval(handler).keywords:
+            eval(handler).run(file_name)
             
     parser()
+    
+parser()
