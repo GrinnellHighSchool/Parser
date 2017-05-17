@@ -1,4 +1,4 @@
-#put the name of any added classes in thie list as a string:
+#put the name of any added classes in the list as a string:
 handler_lst = []
 
 def parser():
