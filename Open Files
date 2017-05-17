@@ -1,53 +1,66 @@
-# Sergio - Open()
-
 import subprocess
-
-class Parser():
-
-    def __init__(self, file):
-        self.file = file
         
-    def Open(self):
-        directory = ['\ ' if x == ' ' else x for x in self.file]
-        file = ''.join(directory[0:len(directory)])
-        subprocess.run('open ' + file, shell=True)
+class openoredit():
+                
 
-
-
-# Aidan - Open()
-
-import subprocess
-
-class opener():
-
-    def __init__(self):
-        pass
-
-    def opener_help(self):
+    def help():
         print ('This program opens a given file')
-
         
-    def directory_opener(self, file):
+                
+
+    def keywords():
+        return(['open', 'edit'])
+    
+            
+    def run(file):
         name = str(file)
         i = 0
         k=0
-        spacekiller = list(name)
+        spacekiller = list(name) 
         for kill in range(len(spacekiller)):
             ehh = spacekiller[kill]
             if ehh == ' ':
-                 i = kill
-                 k += 1
-            elif ehh != ' ':
-                k = 0
+                i = kill
+                k += 1
+            elif ehh == '\\':
+                i=kill
+                k+=1
                 
+            elif ehh != ' ':
+                k = 0 
+
+                    
             if k == 1:
                 spacekiller.insert(i, '\\')
-            
-
-
-
+                if ehh == '\\':
+                    spacekiller.insert(i,'\\') #From spacekiller to this line, this loop makes the name of the code runable in this program.
+                    
         for lol in spacekiller:            
             file = ''.join(spacekiller[0:len(spacekiller)])
-        print (file)
 
-        subprocess.run('open ' + file, shell=True)
+        print(file)
+        subprocess.run('open ' + file, shell=True) #This opens the file.
+
+
+handler_lst = ['openoredit']
+
+def parser():
+    print('\n','Enter command below:')
+    command = str(input())
+    command_lst = command.split()
+    try:
+        keyword = command_lst[0]
+    except:
+        keyword = ''
+    file_name = ''
+    for word in command_lst[1:]:
+        file_name += word + ' '
+    file_name = file_name[:-1]
+    
+    for handler in handler_lst:
+        if keyword in eval(handler).keywords():
+            eval(handler).run(file_name)
+            
+    parser()
+    
+parser()
