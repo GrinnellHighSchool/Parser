@@ -10,7 +10,7 @@ class Create():
 		return "this command will create a file in the current users documents folder if the user \
 specifies somewhere else for the the file to be placed in this manner \
 \"create hello.txt in Desktop\""
-	def run(self, name, fileloc = "Documents/"):
+	def run(name, fileloc = "Documents/"):
 		filextention = ".txt"
 		for letter in range(len(name)-1):
 			if name[letter] == ".":
@@ -21,7 +21,7 @@ specifies somewhere else for the the file to be placed in this manner \
 			file = open(fileloc+name+filextention, "x")
 			return(True)
 		except:	
-			file = open("Documents/"+name+filextention, "x")
+			file = open("Documents/"+name+filextention,'x')
 			return(False)
 
 
