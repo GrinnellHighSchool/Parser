@@ -1,13 +1,9 @@
-import subprocessimport subprocess
+import subprocess
 import shutil
 import os
 import pwd
 
 class Delete():
-    def __init__(self, file):
-        self.file = file
-        self.user = ["/Users/", pwd.getpwuid(os.getuid())[ 0 ], "/.Trash"]
-        self.trash = ''.join(self.user[0:len(self.user)])
 
     def keyword(self):
         return ["Delete", "Remove", "Erase", "delete", "remove", "erase"]
@@ -17,6 +13,7 @@ class Delete():
     
     def run(self):
         if os.path.exists(self.file) == True:
+            trash = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/.Trash"]
             response = input("Delete File: ")
             check = False
             while check == False:
@@ -25,7 +22,7 @@ class Delete():
                     print ("Canceled")
                     check = True
                 elif response == "delete":
-                    shutil.move(self.file, self.trash)
+                    shutil.move(self.file, trash)
                     print ("")
                     print ("File Removed")
                     check = True
@@ -38,11 +35,7 @@ class Delete():
             return "File does not exsist"
 
 class Move:
-    def __init__(self, file):
-        self.file = file
-        self.user = ["/Users/", pwd.getpwuid(os.getuid())[ 0 ], "/"]
-        self.place = ''.join(self.user[0:len(self.user)])
-
+    
     def keyword(self):
         return ["Move", "Send", "move", "send"]
                    
@@ -54,53 +47,7 @@ class Move:
             response = input("Location: ")   # Asks the new location for file
             valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
             while True:
-                directory = self.place
-                for location in valid_reponses: # Checks if location is valid
-                    if response == location:
-                        directory.append(location)
-                        file = ''.join(directory[0:len(directory)])
-                        print (directory)
-                        shutil.move(self.file, file)
-                        print ("")
-                        return ("File Moved")                   
-                print ("")
-                print ("Invalid Location: ")
-                response = input("Location: " )
-        else:
-            return "File does not exsist"
-                    print ("Canceled")
-                    check = True
-                elif response == "delete":
-                    shutil.move(self.file, self.trash)
-                    print ("")
-                    print ("File Removed")
-                    check = True
-                else:
-                    print ("")
-                    print ("Invalid Response: ")
-                    print ("Type (delete) to remove file or type (cancel) to exit")
-                    response = input("Delete File: " )
-        else:
-            return "File does not exsist"
-
-class Move:
-    def __init__(self, user, file):
-        self.file = file
-        self.user = ["/Users/", user, "/"]
-        self.place = ''.join(self.user[0:len(self.user)])
-
-    def keyword(self):
-        return ["Move", "Send", "move", "send"]
-                   
-    def help(self):
-        print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
-        
-    def run(self):
-        if os.path.exists(self.file) == True:
-            response = input("Location: ")   # Asks the new location for file
-            valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
-            while True:
-                directory = self.place
+                directory = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/"]
                 for location in valid_reponses: # Checks if location is valid
                     if response == location:
                         directory.append(location)
