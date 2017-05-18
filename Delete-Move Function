@@ -5,14 +5,14 @@ import pwd
 
 class Delete():
 
-    def keyword(self):
+    def keywords():
         return ["Delete", "Remove", "Erase", "delete", "remove", "erase"]
                    
-    def help(self):
+    def help():
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
     
-    def run(self):
-        if os.path.exists(self.file) == True:
+    def run():
+        if os.path.exists(file_name) == True:
             trash = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/.Trash"]
             response = input("Delete File: ")
             check = False
@@ -22,7 +22,7 @@ class Delete():
                     print ("Canceled")
                     check = True
                 elif response == "delete":
-                    shutil.move(self.file, trash)
+                    shutil.move(file_name, trash)
                     print ("")
                     print ("File Removed")
                     check = True
@@ -36,14 +36,14 @@ class Delete():
 
 class Move:
     
-    def keyword(self):
-        return ["Move", "Send", "move", "send"]
+    def keywords():
+        return ["move", "send"]
                    
-    def help(self):
+    def help():
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
         
-    def run(self):
-        if os.path.exists(self.file) == True:
+    def run(file_name):
+        if os.path.exists(file_name) == True:
             response = input("Location: ")   # Asks the new location for file
             valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
             while True:
@@ -53,7 +53,7 @@ class Move:
                         directory.append(location)
                         file = ''.join(directory[0:len(directory)])
                         print (directory)
-                        shutil.move(self.file, file)
+                        shutil.move(file_name, file)
                         print ("")
                         return ("File Moved")                   
                 print ("")
@@ -61,3 +61,28 @@ class Move:
                 response = input("Location: " )
         else:
             return "File does not exsist"
+
+        
+
+handler_lst = ["Move", "Delete"]
+
+def parser():
+    print('\n','Enter command below:')
+    command = str(input())
+    command_lst = command.split()
+    try:
+        keyword = command_lst[0]
+    except:
+        keyword = ''
+    file_name = ''
+    for word in command_lst[1:]:
+        file_name += word + ' '
+    file_name = file_name[:-1]
+    
+    for handler in handler_lst:
+        if keyword in eval(handler).keywords():
+            eval(handler).run(file_name)
+            
+    parser()
+    
+parser()
