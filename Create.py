@@ -4,9 +4,9 @@ called Help that can be called to return a string that can help explain the over
 the create keyword."""
 
 class Create():
-	def keywords(self):
+	def keywords():
 		return(["New","Create","Make","Forge"])
-	def help(self):
+	def help():
 		return "this command will create a file in the current users documents folder if the user \
 specifies somewhere else for the the file to be placed in this manner \
 \"create hello.txt in Desktop\""
