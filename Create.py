@@ -19,24 +19,5 @@ specifies somewhere else for the the file to be placed in this manner \
 				break
 		try:
 			file = open(fileloc+name+filextention, "x")
-			return(True)
 		except:	
 			file = open("Documents/"+name+filextention,'x')
-			return(False)
-
-
-#This is the original function that has been replaced by the class which I view as supperior
-"""def create(name,fileloc = "Documents/"):
-	filextention = ".txt"
-	for letter in range(len(name)-1):
-		if name[letter] == ".":
-			filextention = name[letter+1:]
-			name = name[:letter+1]
-			break
-
-	try:
-		file = open(fileloc+name+filextention, "x")
-		return(True)
-	except:	
-		file = open("Documents/"+name+filextention, "x")
-		return(False)"""
