@@ -13,17 +13,22 @@ def parser():
     for word in command_lst[1:]:
         file_name += word + ' '
     file_name = file_name[:-1]
-    
+
+    keyword_in = False    
     for handler in handler_lst:
-        if keyword in eval(handler).keywords():
+        if keyword in eval(handler).keywords:
+            keyword_in = True
             eval(handler).run(file_name)
-            
+
+    if keyword_in = False:
+        print("Invalid command.")
+        
     parser()
     
-    #classes go here:
-    
-    
-    
-    #^^^^
+#classes go here:
+
+
+
+#^^^^
     
 parser()
