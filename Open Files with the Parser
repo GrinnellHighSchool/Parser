@@ -46,7 +46,7 @@ handler_lst = ['openoredit']
 
 def parser():
     print('\n','Enter command below:')
-    command = str(input())
+    command = str.lower(input())
     command_lst = command.split()
     try:
         keyword = command_lst[0]
