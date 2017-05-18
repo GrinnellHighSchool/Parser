@@ -16,7 +16,7 @@ def parser():
 
     keyword_in = False    
     for handler in handler_lst:
-        if keyword in eval(handler).keywords:
+        if keyword in eval(handler).keywords():
             keyword_in = True
             eval(handler).run(file_name)
 
