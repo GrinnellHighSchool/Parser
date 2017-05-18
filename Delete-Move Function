@@ -51,7 +51,6 @@ class Move:
                     if response == location:
                         directory.append(location)
                         file = ''.join(directory[0:len(directory)])
-                        print (directory)
                         shutil.move(file_name, file)
                         print ("")
                         return ("File Moved")                   
