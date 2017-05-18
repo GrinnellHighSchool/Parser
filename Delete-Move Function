@@ -6,14 +6,13 @@ import pwd
 class Delete():
 
     def keywords():
-        return ["Delete", "Remove", "Erase", "delete", "remove", "erase"]
+        return ["delete", "remove", "erase"]
                    
     def help():
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
     
-    def run():
+    def run(file_name):
         if os.path.exists(file_name) == True:
-            trash = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/.Trash"]
             response = input("Delete File: ")
             check = False
             while check == False:
@@ -22,7 +21,7 @@ class Delete():
                     print ("Canceled")
                     check = True
                 elif response == "delete":
-                    shutil.move(file_name, trash)
+                    shutil.move(file_name, "Trash")
                     print ("")
                     print ("File Removed")
                     check = True
