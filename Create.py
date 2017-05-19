@@ -8,7 +8,7 @@ import pwd
 
 class Create():
 	def keywords():
-		return(["New","Create","Make","Forge"])
+		return(["new","create","make","forge"])
 	def help():
 		return "this command will create a file in the current users documents folder if the user \
 specifies somewhere else for the the file to be placed in this manner \
