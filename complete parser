@@ -14,7 +14,7 @@ import pwd
 class Audio():
 
     def keywords():
-        return(["Start", "Play", "Music", "Sound"])
+        return(["start", "play", "music", "sound"])
 
     def help():
         return ("Audio will take in a a filepath to and including the file name itself as a string to the song you want to play. Audio will accept .odd, .wav, and .mp3")
