@@ -3,12 +3,17 @@ handler_lst = []
 
 def parser():
     print('\n','Enter command below:')
-    command = str.lower(input())
+    command = str(input())
     command_lst = command.split()
     try:
         keyword = command_lst[0]
     except:
         keyword = ''
+    keyword = str.lower(keyword)
+    
+    if keyword == 'quit' or keyword == 'exit':
+        return
+    
     file_name = ''
     for word in command_lst[1:]:
         file_name += word + ' '
