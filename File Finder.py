@@ -40,6 +40,17 @@ def Searcher(Name):
 		for x in range(len(fileLocations)):
 			print(str(x+1) + ". " + fileLocations[x])
 		local = input("Hey there is more that one file with that name please type the number of the file you want\n")
+		
+		try:
+			local = int(local)
+		except:
+			try:
+				local = input("Hey that wasn't a number\n")
+				local = int(local)
+				break
+			except:
+				pass
+		
 		fileLocation = fileLocations[int(local)-1]
 	elif fileLocations == []:
 		print("Hey there is no file found with that name")
