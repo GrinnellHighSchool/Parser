@@ -3,6 +3,9 @@ these paramaters will specify the name and then the location of the file. the cl
 called Help that can be called to return a string that can help explain the overall idea of the usage of
 the create keyword."""
 
+import os
+import pwd
+
 class Create():
 	def keywords():
 		return(["New","Create","Make","Forge"])
@@ -17,6 +20,7 @@ specifies somewhere else for the the file to be placed in this manner \
 				filextention = name[letter+1:]
 				name = name[:letter+1]
 				break
+		os.chdir("/Users/" + pwd.getpwuid( os.getuid() )[ 0 ])
 		try:
 			file = open(fileloc+name+filextention, "x")
 		except:	
