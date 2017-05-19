@@ -12,6 +12,8 @@ class Delete():
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
     
     def run(file_name):
+        file_name = Searcher(file_name)[2:]
+        file_name = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/" + file_name]
         if os.path.exists(file_name) == True:
             response = input("Delete File: ")
             check = False
@@ -42,23 +44,22 @@ class Move:
         print("Delete Files: Type (cancel) to exit or type (delete) to remove file.")
         
     def run(file_name):
-        if os.path.exists(file_name) == True:
-            response = input("Location: ")   # Asks the new location for file
-            valid_reponses = ["Documents", "Desktop", "Downloads", "Trash"]
-            while True:
-                directory = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/"]
-                for location in valid_reponses: # Checks if location is valid
-                    if response == location:
-                        directory.append(location)
-                        file = ''.join(directory[0:len(directory)])
-                        shutil.move(file_name, file)
-                        print ("")
-                        return ("File Moved")                   
-                print ("")
-                print ("Invalid Location: ")
-                response = input("Location: " )
-        else:
-            return "File does not exsist"
+        file_name = Searcher(file_name)[2:]
+        file_name = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/" + file_name]
+        response = str.lower(input("Location: "))   # Asks the new location for file
+        valid_reponses = ["documents", "desktop", "downloads", "trash"]
+        while True:
+            directory = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/"]
+            for location in valid_reponses: # Checks if location is valid
+                if response == location:
+                    directory.append(location)
+                    file = ''.join(directory[0:len(directory)])
+                    shutil.move(file_name, file)
+                    print ("")
+                    return ("File Moved")                   
+            print ("")
+            print ("Invalid Location: ")
+            response = input("Location: " )
 
         
 
@@ -76,11 +77,67 @@ def parser():
     for word in command_lst[1:]:
         file_name += word + ' '
     file_name = file_name[:-1]
-    
+
+    keyword_in = False    
     for handler in handler_lst:
         if keyword in eval(handler).keywords():
+            keyword_in = True
             eval(handler).run(file_name)
-            
+
+    if keyword_in == False:
+        print("Invalid command.")
+        
     parser()
+
+
     
+def Searcher(Name):
+	#This searches for different versions of the names
+	Name = Name.lower()
+	nameList = []
+	nameList.append(Name)
+	nameList.append("." + Name)
+	for letter in range(len(Name)-1):
+		if Name[letter] == ".":
+			thingToAppend = Name[letter:]
+			break
+		else:
+			thingToAppend = Name
+	nameList.append(thingToAppend)
+
+	os.chdir("/Users/" + pwd.getpwuid( os.getuid() )[ 0 ])
+	fileLocations = []
+	for dirName, subdirList, fileList in os.walk("."):
+		for fname in fileList:
+			if fname.lower() in nameList:
+				Location = "~"+(dirName + "/" + fname)[1:]
+				Location = list(Location)
+				#This makes sure that the spaces have a \ before them
+				k = 0
+				for letter in range(len(Location)-1):
+					currentLetter = Location[letter]
+					if currentLetter == " ":
+						i = letter
+						k += 1
+					elif currentLetter != " ":
+						k = 0
+					if k == 1:
+						Location.insert(i, "\\")
+				fileLocations.append("".join(Location))
+				
+	if len(fileLocations) > 1:
+		for x in range(len(fileLocations)):
+			print(str(x+1) + ". " + fileLocations[x])
+		local = input("Hey there is more that one file with that name please type the number of the file you want\n")
+		fileLocation = fileLocations[int(local)-1]
+	elif fileLocations == []:
+		print("Hey there is no file found with that name")
+		return False
+	else:
+		fileLocation = fileLocations[0]
+
+	return fileLocation
+
+
+
 parser()
