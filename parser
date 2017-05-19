@@ -20,7 +20,7 @@ def parser():
             keyword_in = True
             eval(handler).run(file_name)
 
-    if keyword_in = False:
+    if keyword_in == False:
         print("Invalid command.")
         
     parser()
