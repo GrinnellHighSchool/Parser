@@ -35,8 +35,19 @@ def Searcher(Name):
 					if k == 1:
 						Location.insert(i, "\\")
 				fileLocations.append("".join(Location))
-	#The returned list of files will have two backslashes before the spaces but that is because they are in a list
-	return fileLocations
+				
+	if len(fileLocations) > 1:
+		for x in range(len(fileLocations)):
+			print(str(x+1) + ". " + fileLocations[x])
+		local = input("Hey there is more that one file with that name please type the number of the file you want\n")
+		fileLocation = fileLocations[int(local)-1]
+	elif fileLocations == []:
+		print("Hey there is no file found with that name")
+		return False
+	else:
+		fileLocation = fileLocations[0]
+
+	return fileLocation
 #You can import this as a module but if you just run the file it will look for "helo there.txt"
 if __name__ == "__main__":
 	print(Searcher("helo there.txt"))
