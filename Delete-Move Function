@@ -13,7 +13,7 @@ class Delete():
     
     def run(file_name):
         file_name = Searcher(file_name)[2:]
-        file_name = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/" + file_name]
+        file_name = "/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/" + file_name
         if os.path.exists(file_name) == True:
             response = input("Delete File: ")
             check = False
@@ -45,7 +45,8 @@ class Move:
         
     def run(file_name):
         file_name = Searcher(file_name)[2:]
-        file_name = ["/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/" + file_name]
+        file_name = "/Users/" + pwd.getpwuid(os.getuid())[ 0 ] + "/" + file_name
+        print (file_name)
         response = str.lower(input("Location: "))   # Asks the new location for file
         valid_reponses = ["documents", "desktop", "downloads", "trash"]
         while True:
@@ -54,6 +55,7 @@ class Move:
                 if response == location:
                     directory.append(location)
                     file = ''.join(directory[0:len(directory)])
+                    print (file)
                     shutil.move(file_name, file)
                     print ("")
                     return ("File Moved")                   
